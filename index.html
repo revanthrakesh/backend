@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script type="text/javascript">
+		function display(){
+			var name=document.getElementById("name").value
+			var pass=document.getElementById("pass").value
+			var age=document.getElementById("age").value
+			console.log(name,pass,age)
+			fetch("http://localhost:4000/register",{
+				method:"POST",
+				headers:{
+					"Content-Type":"application/json"
+				},
+				body:JSON.stringify({username:name,password:pass,age:age})
+			})
+			.then((res)=>{
+				console.log(res)
+				return res.json()
+			})
+			.then((f)=>{
+				console.log(f)
+			})
+		}
+	</script>
+</head>
+<body>
+	<input id="name" type="text" placeholder="username">
+    <input id="pass" type="password" placeholder="password">
+    <input type="text" placeholder="age" id="age">
+    <button onclick="display()">submit</button>
+</body>
+</html>
